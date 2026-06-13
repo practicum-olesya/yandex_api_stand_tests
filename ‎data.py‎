@@ -1,0 +1,11 @@
+ORDER_BODY = {
+    "firstName": "Роман",
+    "lastName": "Романов",
+    "address": "Улица Попова, дом 15",
+    "metroStation": 7,
+    "phone": "+79256392585",
+    "rentTime": 3,
+    "deliveryDate": "2026-06-18",
+    "comment": "Автотест",
+    "color": ["BLACK"]
+}
