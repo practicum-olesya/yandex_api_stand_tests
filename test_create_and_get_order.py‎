@@ -1,0 +1,26 @@
+import requests
+from configuration import BASE_URL, CREATE_ORDER_PATH, GET_ORDER_BY_TRACK_PATH
+from data import ORDER_BODY
+
+
+def test_create_order_and_get_by_track():
+    create_response = requests.post(
+        BASE_URL + CREATE_ORDER_PATH,
+        json=ORDER_BODY
+    )
+
+    assert create_response.status_code == 201 or create_response.status_code == 200
+    create_json = create_response.json()
+    assert "track" in create_json
+    track = create_json["track"]
+
+    params = {"t": track}
+    get_response = requests.get(
+        BASE_URL + GET_ORDER_BY_TRACK_PATH,
+        params=params
+    )
+
+    assert get_response.status_code == 200
+
+    get_json = get_response.json()
+    assert "order" in get_json and get_json["order"] is not None
